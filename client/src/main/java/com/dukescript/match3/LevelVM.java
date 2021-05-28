@@ -43,7 +43,6 @@ class LevelVM {
 
     private static Tile EMPTY = new Tile(-1, "none", "0", false);
     private static int TILE_TYPES = 6;
-    private static Random random = new Random(System.currentTimeMillis());
     private static int drop = 0;
 
     static void onPageLoad() throws Exception {
@@ -65,6 +64,8 @@ class LevelVM {
         level.setDeleted(0);
         level.setMoves(12);
         level.setGoal(new Goal(0, 1, 2, 8, 6, 4, 0, 0, 0, 0, 0, 0));
+        
+        Random random = new Random();
 
         for (int i = 0; i < level.getColumns() * level.getRows(); i++) {
             level.getTiles().add(i, new Tile(0, "none", "0", false));
@@ -216,6 +217,7 @@ class LevelVM {
     }
 
     private static void fillUpTiles(Level level, List<Tile> tiles) {
+        Random random = new Random();
         for (int col = 0; col < level.getColumns(); col++) {
             for (int row = level.getRows() - 1; row >= 0; row--) {
                 int index = row * level.getColumns() + col;
