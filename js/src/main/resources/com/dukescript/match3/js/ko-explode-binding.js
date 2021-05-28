@@ -1,4 +1,7 @@
-    ko.bindingHandlers['explode'] = {
+if (!window.h) {
+    window.h = {};
+}
+window.h['explode'] = {
         update: function (element, valueAccessor, allBindings, data, bindingContext) {
             var value = valueAccessor();
             var tile = data;

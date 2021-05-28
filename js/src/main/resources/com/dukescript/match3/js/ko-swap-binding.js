@@ -1,4 +1,7 @@
-ko.bindingHandlers['swap'] = {
+if (!window.h) {
+    window.h = {};
+}
+window.h['swap'] = {
     update: function (element, valueAccessor) {
         var value = valueAccessor();
         var direction = ko.unwrap(value);

@@ -12,15 +12,27 @@ import net.java.html.js.JavaScriptResource;
  *
  * @author antonepple
  */
-@JavaScriptResource(value = "ko-explode-binding.js")
 public class ExplodeBinding {
+    @JavaScriptResource(value = "ko-explode-binding.js")
+    private static final class JS {
+        @JavaScriptBody(args = {}, body = "")
+        private static native void init_impl();
+    }
 
     public static void init() {
         Jqueryui.init();
-        init_impl();
+        mockKo();
+        JS.init_impl();
     }
 
-    @JavaScriptBody(args = {}, body = "")
-    private static native void init_impl();
-
+    @JavaScriptBody(args = {}, 
+        body =    "if (window.h) {\n"
+                + "  for (var p in window.h) {\n"
+                + "    window.ko.bindingHandlers[p] = window.h[p];\n"
+                + "  };\n"
+                + "  window.h = null;\n"
+                + "}\n"
+                + ""
+    )
+    private static native void mockKo();
 }

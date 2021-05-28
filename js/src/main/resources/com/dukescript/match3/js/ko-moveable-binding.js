@@ -1,4 +1,7 @@
-ko.bindingHandlers['moveable'] = {
+if (!window.h) {
+    window.h = {};
+}
+window.h['moveable'] = {
     init: function (element, valueAccessor, allBindingsAccessor, data, context) {
         var startPosition = {};
         startPosition.element = element;
